@@ -820,6 +820,7 @@
       .testimonials-section, .author-section { padding: 70px 6vw; }
 
       .sticky-cta { display: block; }
+      footer { padding-bottom: 80px; }
     }
 
     @media (max-width: 480px) {
@@ -1057,10 +1058,17 @@
     const nav = document.getElementById('main-nav');
     const stickyCta = document.getElementById('sticky-cta');
 
+    let footerVisible = false;
+    const footer = document.querySelector('footer');
+    const footerObserver = new IntersectionObserver((entries) => {
+      footerVisible = entries[0].isIntersecting;
+    }, { threshold: 0 });
+    if (footer) footerObserver.observe(footer);
+
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY > 60;
       nav.classList.toggle('scrolled', scrolled);
-      stickyCta.classList.toggle('visible', scrolled);
+      stickyCta.classList.toggle('visible', scrolled && !footerVisible);
     }, { passive: true });
 
     // ── Scroll reveal ──
