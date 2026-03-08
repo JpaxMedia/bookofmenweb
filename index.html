@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Book of Men — Joseph D. Sparveri</title>
+  <meta name="description" content="A collection of poems and reflections that dives into the quiet battles, doubts, and desires men rarely put into words." />
+  <meta property="og:title" content="The Book of Men — Joseph D. Sparveri" />
+  <meta property="og:description" content="Poems and reflections for the quiet battles, doubts, and desires men rarely put into words." />
+  <meta property="og:image" content="joebookofmen.png" />
+  <meta property="og:type" content="website" />
+
+  <!-- Meta Pixel placeholder -->
+  <!-- META_PIXEL_ID: replace YOUR_PIXEL_ID below -->
+  <!--
+  <script>
+    !function(f,b,e,v,n,t,s){...}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
+  </script>
+  -->
+
+  <!-- Google Analytics placeholder -->
+  <!-- GA_MEASUREMENT_ID: replace G-XXXXXXXX below -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXX');</script>
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #060606;
+      --dark:    #0e0d0c;
+      --dark2:   #141210;
+      --warm:    #c4956a;
+      --warm2:   #a3714a;
+      --warm3:   #e8c49a;
+      --cream:   #f0e8dc;
+      --muted:   #6e6259;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'Jost', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 999; opacity: .5;
+    }
+
+    /* ── AMBIENT GLOW ORBS ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+      opacity: 0;
+      animation: orbPulse 8s ease-in-out infinite;
+    }
+    .orb-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(196,149,106,.12) 0%, transparent 70%);
+      top: -200px; left: -200px;
+      animation-delay: 0s;
+      opacity: 1;
+    }
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(196,149,106,.08) 0%, transparent 70%);
+      bottom: 20%; right: -100px;
+      animation-delay: 4s;
+      opacity: 1;
+    }
+    @keyframes orbPulse {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.15) translateY(-20px); }
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 8vw;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background .4s, backdrop-filter .4s, border-color .4s;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(6,6,6,.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-color: rgba(196,149,106,.1);
+    }
+    .nav-brand {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--cream);
+      opacity: .85;
+      letter-spacing: .02em;
+      text-decoration: none;
+    }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--warm);
+      color: var(--black);
+      font-family: var(--sans);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 10px 20px;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--warm3); transform: translateY(-1px); }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      overflow: hidden;
+      background: rgba(196,149,106,.07);
+      border-bottom: 1px solid rgba(196,149,106,.12);
+      padding: 10px 0;
+      position: relative;
+      z-index: 1;
+      margin-top: 64px;
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 30s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    .ticker-item {
+      white-space: nowrap;
+      padding: 0 48px;
+      font-size: .68rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--warm);
+      display: flex; align-items: center; gap: 16px;
+    }
+    .ticker-dot { width: 3px; height: 3px; background: var(--warm); border-radius: 50%; opacity: .5; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 90% at 20% 60%, rgba(196,149,106,.09) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 40%, rgba(196,149,106,.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-left {
+      padding: 100px 60px 100px 8vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 36px;
+      animation: fadeUp .9s ease both;
+      position: relative; z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 12px;
+      font-family: var(--sans);
+      font-size: .68rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--warm);
+    }
+    .eyebrow-line {
+      width: 28px; height: 1px;
+      background: var(--warm); opacity: .6;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(3.6rem, 6vw, 7rem);
+      line-height: .9;
+      letter-spacing: -.02em;
+      color: var(--cream);
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--warm);
+    }
+    .hero-title .title-of {
+      font-size: .52em;
+      display: block;
+      opacity: .6;
+      letter-spacing: .05em;
+    }
+
+    .hero-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+      color: rgba(240,232,220,.6);
+      line-height: 1.65;
+      max-width: 400px;
+      border-left: 2px solid rgba(196,149,106,.3);
+      padding-left: 20px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--warm);
+      color: var(--black);
+      font-family: var(--sans);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 32px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.12) 50%, transparent 100%);
+      transform: translateX(-100%);
+      transition: transform .4s;
+    }
+    .btn-primary:hover::before { transform: translateX(100%); }
+    .btn-primary:hover { background: var(--warm3); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,149,106,.3); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent;
+      color: var(--cream);
+      font-family: var(--sans);
+      font-size: .75rem;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 15px 32px;
+      border: 1px solid rgba(240,232,220,.2);
+      cursor: pointer;
+      transition: border-color .2s, color .2s, transform .15s;
+    }
+    .btn-secondary:hover { border-color: var(--warm); color: var(--warm); transform: translateY(-2px); }
+
+    .hero-rating {
+      display: flex; align-items: center; gap: 10px;
+      font-size: .72rem;
+      color: rgba(240,232,220,.45);
+      letter-spacing: .06em;
+    }
+    .stars { color: var(--warm); letter-spacing: 1px; font-size: .85rem; }
+
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 8vw 100px 40px;
+      animation: fadeUp .9s .25s ease both;
+      position: relative; z-index: 1;
+    }
+
+    .cover-wrap {
+      position: relative;
+      max-width: 360px;
+      width: 100%;
+      perspective: 1000px;
+    }
+
+    .cover-inner {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform .1s ease-out;
+    }
+
+    .cover-glow {
+      position: absolute;
+      inset: -30px -30px -60px -30px;
+      background: radial-gradient(ellipse at center, rgba(196,149,106,.22) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%, 100% { opacity: .7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    .cover-img {
+      position: relative; z-index: 1;
+      width: 100%;
+      display: block;
+      box-shadow:
+        0 50px 100px rgba(0,0,0,.8),
+        0 20px 40px rgba(0,0,0,.5),
+        0 0 0 1px rgba(196,149,106,.15);
+    }
+
+    .cover-spine {
+      position: absolute;
+      top: 0; bottom: 0; right: -12px;
+      width: 12px;
+      background: linear-gradient(180deg, rgba(196,149,106,.3) 0%, rgba(100,70,40,.4) 100%);
+      z-index: 0;
+      transform: rotateY(90deg);
+      transform-origin: left center;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; gap: 20px;
+      padding: 0 8vw;
+      opacity: .25;
+    }
+    .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--warm), transparent); }
+    .divider-glyph { color: var(--warm); font-family: var(--serif); font-size: 1.1rem; }
+
+    /* ── SECTIONS ── */
+    .section { padding: 110px 8vw; position: relative; }
+
+    .section-label {
+      display: flex; align-items: center; gap: 12px;
+      font-size: .65rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 28px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1; max-width: 40px;
+      height: 1px;
+      background: var(--warm);
+      opacity: .4;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-headline {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 32px;
+    }
+    .about-headline em { font-style: italic; color: var(--warm); }
+
+    .about-body {
+      font-size: .95rem;
+      line-height: 1.9;
+      color: rgba(240,232,220,.65);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .about-body em { color: rgba(240,232,220,.85); font-style: italic; }
+
+    .themes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      margin-top: 12px;
+    }
+
+    .theme-item {
+      padding: 22px 26px;
+      background: rgba(196,149,106,.05);
+      border-left: 2px solid rgba(196,149,106,.2);
+      transition: background .25s, border-color .25s, transform .2s;
+      cursor: default;
+    }
+    .theme-item:hover {
+      background: rgba(196,149,106,.1);
+      border-color: var(--warm);
+      transform: translateX(3px);
+    }
+    .theme-name {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--cream);
+      margin-bottom: 5px;
+    }
+    .theme-desc {
+      font-size: .75rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+
+    /* ── POEM EXCERPT ── */
+    .poem-section {
+      padding: 100px 8vw;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+    .poem-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 100% at 50% 50%, rgba(196,149,106,.05) 0%, transparent 70%);
+    }
+    .poem-label {
+      font-size: .65rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--warm);
+      opacity: .7;
+      margin-bottom: 48px;
+    }
+    .poem-title {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      color: rgba(240,232,220,.4);
+      letter-spacing: .06em;
+      margin-bottom: 36px;
+    }
+    .poem-body {
+      font-family: var(--serif);
+      font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+      line-height: 1.95;
+      color: var(--cream);
+      max-width: 580px;
+      margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .poem-body .poem-line {
+      display: block;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .poem-body.visible .poem-line {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .poem-body .poem-line:nth-child(1) { transition-delay: .0s; }
+    .poem-body .poem-line:nth-child(2) { transition-delay: .12s; }
+    .poem-body .poem-line:nth-child(3) { transition-delay: .24s; }
+    .poem-body .poem-line:nth-child(4) { transition-delay: .36s; }
+    .poem-body .poem-line:nth-child(5) { transition-delay: .48s; }
+    .poem-body .poem-line:nth-child(6) { transition-delay: .60s; }
+    .poem-body .poem-line:nth-child(7) { transition-delay: .72s; }
+    .poem-em {
+      font-style: italic;
+      color: var(--warm);
+    }
+    .poem-divider {
+      width: 40px; height: 1px;
+      background: rgba(196,149,106,.3);
+      margin: 32px auto;
+    }
+    .poem-note {
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 40px;
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote-section {
+      padding: 100px 8vw;
+      text-align: center;
+      position: relative;
+    }
+    .pull-quote-section::before {
+      content: '';
+      position: absolute; left: 8vw; right: 8vw; top: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(196,149,106,.18), transparent);
+    }
+    .pull-quote-section::after {
+      content: '';
+      position: absolute; left: 8vw; right: 8vw; bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(196,149,106,.18), transparent);
+    }
+    .pull-quote-mark {
+      font-family: var(--serif);
+      font-size: 8rem;
+      line-height: .5;
+      color: var(--warm);
+      opacity: .15;
+      margin-bottom: 24px;
+      display: block;
+      font-style: italic;
+    }
+    .pull-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+      line-height: 1.4;
+      color: var(--cream);
+      max-width: 680px;
+      margin: 0 auto 24px;
+    }
+    .pull-quote-attr {
+      font-size: .68rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--warm);
+      opacity: .65;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section {
+      padding: 100px 8vw;
+      background: linear-gradient(180deg, transparent 0%, rgba(196,149,106,.03) 50%, transparent 100%);
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .testimonial-card {
+      padding: 36px 32px;
+      background: rgba(196,149,106,.04);
+      border: 1px solid rgba(196,149,106,.1);
+      transition: border-color .25s, background .25s, transform .25s;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(196,149,106,.25);
+      background: rgba(196,149,106,.07);
+      transform: translateY(-4px);
+    }
+    .testimonial-stars {
+      color: var(--warm);
+      font-size: .9rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .testimonial-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: rgba(240,232,220,.8);
+      margin-bottom: 24px;
+    }
+    .testimonial-author {
+      font-size: .7rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── AUTHOR ── */
+    .author-section {
+      padding: 110px 8vw;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .author-photo-wrap { width: 200px; flex-shrink: 0; }
+    .author-photo-placeholder {
+      width: 200px; height: 240px;
+      background: linear-gradient(135deg, rgba(196,149,106,.1) 0%, rgba(196,149,106,.04) 100%);
+      border: 1px solid rgba(196,149,106,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .68rem; letter-spacing: .12em;
+      color: var(--muted); text-transform: uppercase;
+    }
+    .author-name {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .author-title {
+      font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--warm); margin-bottom: 28px; opacity: .8;
+    }
+    .author-bio {
+      font-size: .95rem; line-height: 1.9;
+      color: rgba(240,232,220,.62); max-width: 580px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .author-bio em { color: rgba(240,232,220,.85); font-style: italic; }
+
+    /* ── EMAIL CAPTURE ── */
+    .email-section {
+      padding: 110px 8vw;
+      background: linear-gradient(180deg, rgba(196,149,106,.04) 0%, rgba(196,149,106,.02) 100%);
+      border-top: 1px solid rgba(196,149,106,.1);
+      border-bottom: 1px solid rgba(196,149,106,.1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .email-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(196,149,106,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .email-eyebrow {
+      font-size: .65rem; letter-spacing: .32em; text-transform: uppercase;
+      color: var(--warm); opacity: .7; margin-bottom: 20px;
+    }
+    .email-headline {
+      font-family: var(--serif); font-weight: 300;
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      color: var(--cream); margin-bottom: 14px;
+    }
+    .email-headline em { font-style: italic; color: var(--warm); }
+    .email-sub {
+      font-family: var(--serif); font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(240,232,220,.5); margin-bottom: 44px;
+      max-width: 480px; margin-left: auto; margin-right: auto;
+    }
+    .email-form {
+      display: flex; gap: 0; max-width: 480px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .email-input {
+      flex: 1;
+      background: rgba(6,6,6,.6);
+      border: 1px solid rgba(240,232,220,.15);
+      border-right: none;
+      color: var(--cream);
+      font-family: var(--sans); font-size: .9rem;
+      padding: 16px 22px; outline: none;
+      transition: border-color .2s;
+    }
+    .email-input::placeholder { color: var(--muted); }
+    .email-input:focus { border-color: rgba(196,149,106,.6); }
+    .email-btn {
+      background: var(--warm); color: var(--black);
+      border: none; font-family: var(--sans); font-size: .72rem;
+      font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
+      padding: 16px 28px; cursor: pointer;
+      transition: background .2s, box-shadow .2s;
+      white-space: nowrap;
+    }
+    .email-btn:hover { background: var(--warm3); box-shadow: 0 6px 20px rgba(196,149,106,.25); }
+    .email-note {
+      margin-top: 18px; font-size: .7rem;
+      color: var(--muted); letter-spacing: .06em;
+      position: relative; z-index: 1;
+    }
+
+    /* ── RETAILERS ── */
+    .retailers-section { padding: 90px 8vw; text-align: center; }
+    .retailers-label {
+      font-size: .65rem; letter-spacing: .32em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 36px;
+    }
+    .retailers-grid {
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 8vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(240,232,220,.05);
+    }
+    .footer-brand {
+      font-family: var(--serif); font-size: 1rem;
+      color: rgba(240,232,220,.25);
+    }
+    .footer-links {
+      display: flex; gap: 28px;
+    }
+    .footer-link {
+      font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(240,232,220,.2); text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-link:hover { color: var(--warm); }
+    .footer-copy {
+      font-size: .68rem; color: rgba(240,232,220,.15); letter-spacing: .05em;
+    }
+
+    /* ── MOBILE STICKY CTA ── */
+    .sticky-cta {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 200;
+      background: var(--warm);
+      color: var(--black);
+      text-align: center;
+      padding: 16px;
+      font-family: var(--sans); font-size: .75rem;
+      font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+      text-decoration: none;
+      transform: translateY(100%);
+      transition: transform .3s ease;
+    }
+    .sticky-cta.visible { transform: translateY(0); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 6vw; }
+      .nav-brand { font-size: .9rem; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 0;
+      }
+      .hero-left {
+        padding: 44px 6vw 24px;
+        order: 2; gap: 24px;
+      }
+      .hero-right {
+        padding: 40px 6vw 0;
+        order: 1;
+      }
+      .cover-wrap { max-width: 240px; margin: 0 auto; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .themes { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; gap: 16px; }
+      .author-section { grid-template-columns: 1fr; gap: 32px; }
+      .author-photo-wrap { width: 120px; }
+      .author-photo-placeholder { width: 120px; height: 150px; }
+      .email-form { flex-direction: column; }
+      .email-input { border-right: 1px solid rgba(240,232,220,.15); border-bottom: none; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+      .section { padding: 70px 6vw; }
+      .poem-section, .pull-quote-section,
+      .email-section, .retailers-section,
+      .testimonials-section, .author-section { padding: 70px 6vw; }
+
+      .sticky-cta { display: block; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 3.2rem; }
+      .hero-ctas { flex-direction: column; }
+      .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- ══ NAV ══ -->
+  <nav class="nav" id="main-nav">
+    <a href="#" class="nav-brand">The Book of Men</a>
+    <a href="https://www.amazon.com/Book-Men-Joseph-D-Sparveri/dp/B0GPWDKP18/" target="_blank" rel="noopener" class="nav-cta">
+      Buy Now
+    </a>
+  </nav>
+
+  <!-- ══ TICKER ══ -->
+  <div class="ticker-wrap">
+    <div class="ticker-track" id="ticker">
+      <span class="ticker-item">New Release <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Joseph D. Sparveri <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Available on Amazon <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Barnes &amp; Noble <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Walmart <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Booktopia <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Poems for Men <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Fatherhood · Strength · Silence · Love <span class="ticker-dot"></span></span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item">New Release <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Joseph D. Sparveri <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Available on Amazon <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Barnes &amp; Noble <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Walmart <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Booktopia <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Poems for Men <span class="ticker-dot"></span></span>
+      <span class="ticker-item">Fatherhood · Strength · Silence · Love <span class="ticker-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        New Release · Joseph D. Sparveri
+      </div>
+      <h1 class="hero-title">
+        The<br>
+        <em>Book</em><br>
+        <span class="title-of">of Men</span>
+      </h1>
+      <p class="hero-sub">Poems and reflections for the quiet battles, doubts, and desires men rarely put into words.</p>
+      <div class="hero-ctas">
+        <a href="https://www.amazon.com/Book-Men-Joseph-D-Sparveri/dp/B0GPWDKP18/" target="_blank" rel="noopener" class="btn-primary">
+          Buy on Amazon
+        </a>
+        <a href="https://www.barnesandnoble.com/w/the-book-of-men-joseph-d-sparveri/1149550685?ean=9798822962811" target="_blank" rel="noopener" class="btn-secondary">
+          Barnes &amp; Noble
+        </a>
+      </div>
+      <div class="hero-rating">
+        <span class="stars">★★★★★</span>
+        <span>Available now — paperback &amp; digital</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="cover-wrap" id="cover-wrap">
+        <div class="cover-glow"></div>
+        <div class="cover-inner" id="cover-inner">
+          <img class="cover-img" src="joebookofmen.png" alt="The Book of Men by Joseph D. Sparveri" />
+          <div class="cover-spine"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-glyph">✦</span><div class="divider-line"></div></div>
+
+  <!-- ══ ABOUT THE BOOK ══ -->
+  <section class="section reveal">
+    <p class="section-label">About the Book</p>
+    <div class="about-grid">
+      <div>
+        <h2 class="about-headline">For the man who <em>never had the words</em></h2>
+        <div class="about-body">
+          <p>Men are taught to carry their weight in silence. The doubts, the grief, the love they never learned to say out loud — it all stays locked inside.</p>
+          <p><em>The Book of Men</em> breaks that silence. It speaks the things men feel but rarely say — about fatherhood, failure, longing, and the kind of strength nobody talks about.</p>
+          <p>Whether you're a man looking to feel understood, or someone who loves a man and wants to understand him better — this book was written for you.</p>
+        </div>
+      </div>
+      <div>
+        <div class="themes">
+          <div class="theme-item">
+            <div class="theme-name">Fatherhood</div>
+            <div class="theme-desc">What it means to hold on</div>
+          </div>
+          <div class="theme-item">
+            <div class="theme-name">Silence</div>
+            <div class="theme-desc">The weight of unspoken things</div>
+          </div>
+          <div class="theme-item">
+            <div class="theme-name">Failure</div>
+            <div class="theme-desc">Learning to stand back up</div>
+          </div>
+          <div class="theme-item">
+            <div class="theme-name">Longing</div>
+            <div class="theme-desc">Love that never found words</div>
+          </div>
+          <div class="theme-item">
+            <div class="theme-name">Identity</div>
+            <div class="theme-desc">Who a man truly is</div>
+          </div>
+          <div class="theme-item">
+            <div class="theme-name">Hope</div>
+            <div class="theme-desc">What we pass forward</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-glyph">✦</span><div class="divider-line"></div></div>
+
+  <!-- ══ POEM EXCERPT ══ -->
+  <section class="poem-section reveal">
+    <p class="poem-label">A glimpse inside</p>
+    <p class="poem-title">from "What Men Carry"</p>
+    <div class="poem-body" id="poem-body">
+      <span class="poem-line">He never said <em class="poem-em">I love you</em></span>
+      <span class="poem-line">but he showed up.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">Every morning,</span>
+      <span class="poem-line">before the sun,</span>
+      <span class="poem-line">before you woke,</span>
+      <span class="poem-line">he was already carrying.</span>
+    </div>
+    <div class="poem-divider"></div>
+    <p class="poem-note">One of many poems in The Book of Men</p>
+  </section>
+
+  <!-- ══ PULL QUOTE ══ -->
+  <div class="pull-quote-section reveal">
+    <span class="pull-quote-mark">"</span>
+    <p class="pull-quote">"He wrote what I never knew how to say."</p>
+    <p class="pull-quote-attr">Early Reader</p>
+  </div>
+
+  <!-- ══ TESTIMONIALS ══ -->
+  <section class="testimonials-section reveal">
+    <p class="section-label">What readers are saying</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I bought this for my husband and he read it twice. He said it was the first time he felt like someone understood him."</p>
+        <p class="testimonial-author">Verified Reader</p>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Simple, raw, and honest. Every poem hit something I've been carrying for years but couldn't name. This is a book for men who don't usually read."</p>
+        <p class="testimonial-author">Verified Reader</p>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-3">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I gave this to my father on his birthday. He called me that night. We talked for two hours — first real conversation we've had in years."</p>
+        <p class="testimonial-author">Verified Reader</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ AUTHOR ══ -->
+  <section class="author-section reveal">
+    <div class="author-photo-wrap">
+      <div class="author-photo-placeholder">Photo</div>
+    </div>
+    <div>
+      <h2 class="author-name">Joseph D. Sparveri</h2>
+      <p class="author-title">Author · Entrepreneur · Father · Grandfather</p>
+      <div class="author-bio">
+        <p>Joseph Sparveri is a businessman, father, grandfather, and first-time author based in South Carolina. He wrote <em>The Book of Men</em> out of a belief that men deserve a space to be fully seen — not just for what they do, but for what they carry.</p>
+        <p>When he's not writing, Joseph leads Southern Pavers, bringing the same quiet dedication to his work that he brings to the page.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EMAIL CAPTURE ══ -->
+  <section class="email-section reveal">
+    <p class="email-eyebrow">Free sample</p>
+    <h2 class="email-headline">Read <em>3 poems free</em></h2>
+    <p class="email-sub">Enter your email and we'll send you three poems from the book — no strings attached.</p>
+    <form class="email-form" name="poems-signup" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="poems-signup" />
+      <input type="hidden" name="bot-field" style="display:none" />
+      <input class="email-input" type="email" name="email" placeholder="your@email.com" required />
+      <button class="email-btn" type="submit">Send Me the Poems</button>
+    </form>
+    <p class="email-note">No spam. Unsubscribe anytime.</p>
+  </section>
+
+  <!-- ══ RETAILERS ══ -->
+  <section class="retailers-section reveal">
+    <p class="retailers-label">Available at</p>
+    <div class="retailers-grid">
+      <a href="https://www.amazon.com/Book-Men-Joseph-D-Sparveri/dp/B0GPWDKP18/" target="_blank" rel="noopener" class="btn-primary">Amazon</a>
+      <a href="https://www.barnesandnoble.com/w/the-book-of-men-joseph-d-sparveri/1149550685?ean=9798822962811" target="_blank" rel="noopener" class="btn-secondary">Barnes &amp; Noble</a>
+      <a href="https://www.walmart.com/ip/The-Book-of-Men-Paperback/19645417344" target="_blank" rel="noopener" class="btn-secondary">Walmart</a>
+      <a href="https://www.booktopia.com.au/the-book-of-men-joseph-d-sparveri/book/9798822962828.html" target="_blank" rel="noopener" class="btn-secondary">Booktopia</a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <span class="footer-brand">The Book of Men</span>
+    <div class="footer-links">
+      <a href="https://www.amazon.com/Book-Men-Joseph-D-Sparveri/dp/B0GPWDKP18/" target="_blank" rel="noopener" class="footer-link">Amazon</a>
+      <a href="https://www.barnesandnoble.com/w/the-book-of-men-joseph-d-sparveri/1149550685?ean=9798822962811" target="_blank" rel="noopener" class="footer-link">Barnes &amp; Noble</a>
+    </div>
+    <span class="footer-copy">© 2025 Joseph D. Sparveri · All rights reserved</span>
+  </footer>
+
+  <!-- ══ MOBILE STICKY CTA ══ -->
+  <a href="https://www.amazon.com/Book-Men-Joseph-D-Sparveri/dp/B0GPWDKP18/" target="_blank" rel="noopener" class="sticky-cta" id="sticky-cta">
+    Buy Now on Amazon
+  </a>
+
+  <script>
+    // ── Nav scroll effect ──
+    const nav = document.getElementById('main-nav');
+    const stickyCta = document.getElementById('sticky-cta');
+
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY > 60;
+      nav.classList.toggle('scrolled', scrolled);
+      stickyCta.classList.toggle('visible', scrolled);
+    }, { passive: true });
+
+    // ── Scroll reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // ── Poem line stagger ──
+    const poemBody = document.getElementById('poem-body');
+    const poemObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.3 });
+    if (poemBody) poemObserver.observe(poemBody);
+
+    // ── Book cover 3D tilt ──
+    const coverWrap = document.getElementById('cover-wrap');
+    const coverInner = document.getElementById('cover-inner');
+
+    if (coverWrap && coverInner && window.matchMedia('(min-width: 769px)').matches) {
+      coverWrap.addEventListener('mousemove', (e) => {
+        const rect = coverWrap.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        coverInner.style.transform = `rotateY(${x * 12}deg) rotateX(${-y * 8}deg) translateZ(10px)`;
+      });
+      coverWrap.addEventListener('mouseleave', () => {
+        coverInner.style.transform = 'rotateY(0) rotateX(0) translateZ(0)';
+      });
+    }
+  </script>
+
+</body>
+</html>
